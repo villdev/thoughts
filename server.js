@@ -14,4 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require(`${__dirname}/server/routes`)(app);
 
+app.get("/", (req, res) => {
+  res.json({ message: "Server working fine :D" });
+});
+
 app.listen(process.env.PORT || 2000);

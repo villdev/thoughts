@@ -1,10 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArchive,
-  faBackward,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
 import "./Note.scss";
 import {
   useLocation,
@@ -20,9 +14,9 @@ import { listFormatDate, noteFormatDate } from "./../../utils/helpers";
 
 import ReactTooltip from "react-tooltip";
 import loader from "../../images/bubble_loading.svg";
+import { successNotify } from "../../utils/toast";
 
 const Note = () => {
-  const [value, setValue] = useState("");
   const history = useHistory();
   const location = useLocation();
   const params = useParams();
@@ -63,12 +57,6 @@ const Note = () => {
     setTitle(e.target.value);
   };
 
-  //   const handleDescChange = (content) => {
-  //     setDesc(content);
-  //     // debouncedUpdateNoteDesc();
-  //     // const debouncedUpdateNote = debounce(handleUpdateNote, 800);
-  //     // handleUpdateNoteDesc();
-  //   };
   const handleDescChange = (e) => {
     // setDesc(e.target.value);
     if (!isArchive) {
@@ -116,6 +104,7 @@ const Note = () => {
       setError(response.error);
       return false;
     }
+    successNotify("Note deleted");
     notesContext.notesDispatch({ type: "archiveNoteSuccess", id: params.id });
     // resetState();
     // history.push(`/all-notes`);
@@ -142,6 +131,7 @@ const Note = () => {
       setError(response.error);
       return false;
     }
+    successNotify("Restored note!");
     notesContext.notesDispatch({ type: "archiveNoteSuccess", id: params.id });
     // resetState();
     // history.push(`/trash`);
@@ -163,6 +153,7 @@ const Note = () => {
       setError(response.error);
       return false;
     }
+    successNotify("Deleted permanently.");
     notesContext.notesDispatch({ type: "deleteNoteSuccess", id: response });
 
     // history.push("/trash");
@@ -223,7 +214,6 @@ const Note = () => {
                 data-tip={"Delete"}
                 data-for={"headerActionBtns"}
               >
-                {/* <FontAwesomeIcon icon={faArchive} /> */}
                 <svg
                   width="24"
                   height="24"
@@ -257,11 +247,6 @@ const Note = () => {
                       fill="black"
                     />
                   </svg>
-
-                  {/* <FontAwesomeIcon
-                    icon={faBackward}
-                    onClick={handleUnArchiveNote}
-                  /> */}
                 </div>
                 <div
                   className="action-btn"
@@ -298,29 +283,7 @@ const Note = () => {
         </div>
       </div>
       <div className="note__body">
-        <div className="note__body-head">
-          {/* <input
-            value={title}
-            placeholder="Title"
-            onChange={handleTitleChange}
-            onBlur={() => handleUpdateNote("title")}
-          /> */}
-        </div>
-        <div
-          className="note__body-content"
-          //   onBlur={() => handleUpdateNote("desc")}
-        >
-          {/* <ReactQuill
-            theme="snow"
-            value={desc}
-            placeholder="Start Writing..."
-            onChange={handleDescChange}
-            onBlur={(range, source, quill) => {
-              console.log("--debug: blurred");
-              //   handleUpdateNote("desc");
-            }}
-          /> */}
-
+        <div className="note__body-content">
           <textarea
             value={desc}
             placeholder="Start writing"

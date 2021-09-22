@@ -12,16 +12,16 @@ import { NotesContext } from "./../../context/context";
 import { listFormatDate } from "./../../utils/helpers";
 
 import { postRequest } from "./../../utils/apiRequests";
-// import { BASE_URL, CREATE_NOTE } from "./../../utils/apiEndpoints";
+import { successNotify } from "../../utils/toast";
 
 const NoteList = (props) => {
   const [error, setError] = useState(null);
   const notesContext = useContext(NotesContext);
 
   const [filteredNotes, setFilteredNotes] = useState([]);
-  //   console.log(filteredNotes);
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { title } = props;
   const match = useRouteMatch();
@@ -29,6 +29,7 @@ const NoteList = (props) => {
   useEffect(() => {
     getNotes();
   }, [match.url]);
+  // }, []);
 
   useEffect(() => {
     setFilteredNotes(notesContext.notesState);
@@ -52,6 +53,7 @@ const NoteList = (props) => {
   };
 
   const getNotes = async () => {
+    setIsLoading(true);
     let endpoint = "";
     if (match.url == "/all-notes") {
       endpoint = GET_ALL_NOTES;
@@ -64,6 +66,7 @@ const NoteList = (props) => {
     const response = await getRequest(`${BASE_URL}${endpoint}`);
     if (response.error) {
       setError(response.error);
+      setIsLoading(false);
       return false;
     }
     notesContext.notesDispatch({
@@ -71,6 +74,7 @@ const NoteList = (props) => {
       payload: response,
     });
     setFilteredNotes(response);
+    setIsLoading(false);
     if (response.length > 0) {
       history.push({
         pathname: `${match.url}/${response[0]._id}`,
@@ -85,6 +89,7 @@ const NoteList = (props) => {
       setError(response.error);
       return false;
     }
+    successNotify("Note created!");
     if (response._id) {
       notesContext.notesDispatch({
         type: "createNoteSuccess",
@@ -100,15 +105,6 @@ const NoteList = (props) => {
   return (
     <div className="note-list">
       <div className="note-list__header">
-        {/* <div className="note-list__header-title">
-                    <h1>{title}</h1>
-                </div>
-                <div className="note-list__header-sub-head">
-                    <div className="note-count">
-                        {notesContext.notesState.length} note
-                    </div>
-                </div> */}
-
         <div className="input-text input-text--light container-xs">
           <input
             value={query}
@@ -122,8 +118,6 @@ const NoteList = (props) => {
         </div>
       </div>
       <div className="note-list__body">
-        {/* {notesContext.notesState.length > 0 ? (
-          notesContext.notesState.map((note) => ( */}
         {filteredNotes.length > 0 ? (
           filteredNotes.map((note) => (
             <NavLink
@@ -169,19 +163,6 @@ const NoteList = (props) => {
           </button>
         </div>
       )}
-      {/* <div className="create-note-wrapper">
-        <button className="create-note-btn" onClick={handleCreateNote}>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M19 11H13V5H11V11H5V13H11V19H13V13H19V11Z" fill="white" />
-          </svg>
-        </button>
-      </div> */}
     </div>
   );
 };

@@ -1,53 +1,16 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faSearch,
-  faPlus,
-  faStar,
-  faStickyNote,
-  faTrash,
-  faInfo,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import "./Sidenavbar.scss";
-import { NavLink, useHistory } from "react-router-dom";
-// import { postRequest } from "./../../utils/apiRequests";
-// import { BASE_URL, CREATE_NOTE } from "./../../utils/apiEndpoints";
-import { NotesContext } from "./../../context/context";
-
-import Test from "../../images/menu.svg";
+import { NavLink } from "react-router-dom";
 
 const Sidenavbar = () => {
-  const notesContext = useContext(NotesContext);
-  const history = useHistory();
-  const [error, setError] = useState(null);
-
-  // const handleCreateNote = async () => {
-  //   const response = await postRequest(`${BASE_URL}${CREATE_NOTE}`);
-  //   console.log(response);
-  //   if (response.error) {
-  //     setError(response.error);
-  //     return false;
-  //   }
-  //   if (response._id) {
-  //     notesContext.notesDispatch({
-  //       type: "createNoteSuccess",
-  //       payload: response,
-  //     });
-  //     history.push({
-  //       pathname: `/all-notes/${response._id}`,
-  //       note: response,
-  //     });
-  //   }
-  // };
-
   return (
     <div className="sidenavbar">
       <div className="sidenavbar-top">
         <div className="sidenavbar-top__hamburger">
           <button>
-            {/* <img src={Test} alt="" /> */}
             <svg
               width="24"
               height="24"
@@ -62,28 +25,14 @@ const Sidenavbar = () => {
             </svg>
           </button>
         </div>
-        {/* <div className="sidenavbar-top__create-note">
-          <div className="create-note-btn" onClick={handleCreateNote}>
-            <FontAwesomeIcon className="icon" icon={faPlus} />
-            <div className="title">New Note</div>
-          </div>
-        </div> */}
         <div className="sidenavbar-top__menu-item">
           <ul>
             <li>
-              <NavLink to="/all-notes">
-                {/* <NavLink to={`/all-notes/${notesContext?.notesState[0]?._id}`}> */}
-                {/* <FontAwesomeIcon className="icon" icon={faStickyNote} /> */}
-                All Notes
-              </NavLink>
+              <NavLink to="/all-notes">All Notes</NavLink>
             </li>
 
             <li>
-              <NavLink to="/trash">
-                {/* <NavLink to={`/trash/${notesContext?.notesState[0]?._id}`}> */}
-                {/* <FontAwesomeIcon className="icon" icon={faTrash} /> */}
-                Trash
-              </NavLink>
+              <NavLink to="/trash">Trash</NavLink>
             </li>
           </ul>
         </div>

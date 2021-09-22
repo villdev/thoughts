@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import NoteReducer from "./reducer/NoteReducer";
 import { NotesContext } from "./context/context";
+import { Toaster } from "react-hot-toast";
 
 const initialState = [];
 
@@ -42,6 +43,7 @@ function App() {
             />
           </Switch>
         </div>
+        <Toaster position="bottom-right" />
       </NotesContext.Provider>
     </Router>
   );
