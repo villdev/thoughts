@@ -1,0 +1,205 @@
+.sidenavbar {
+  width: 240px;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  color: #ccc;
+  height: 100%;
+  .sidenavbar-top {
+    flex: 1;
+    .sidenavbar-top__hamburger {
+      display: flex;
+      align-items: center;
+      // justify-content: center;
+      // padding: 15px;
+      // height: 70px;
+
+      button {
+        cursor: pointer;
+        background-color: #1b1b1b;
+        border: none;
+        outline: 0 none;
+        border-radius: 0 0 1rem 0;
+        // padding: 0.75rem;
+        padding: 0.5rem;
+
+        svg {
+          width: 56px;
+          height: 56px;
+        }
+      }
+    }
+
+    .sidenavbar-top__create-note {
+      padding: 0 15px;
+      color: #fff;
+      .create-note-btn {
+        display: flex;
+        align-items: center;
+        background: #03a82d;
+        padding: 8px 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        .icon {
+          font-size: 12px;
+        }
+        .title {
+          margin-left: 10px;
+          background: none;
+          outline: none;
+          border: none;
+        }
+        &:hover {
+          background: #008f26;
+        }
+      }
+    }
+    .sidenavbar-top__menu-item {
+      margin-top: 2rem;
+      ul {
+        li {
+          a {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            margin: 0 1rem;
+            // color: #fff;
+            color: rgb(167, 167, 167);
+            text-decoration: none;
+            position: relative;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            .icon {
+              font-size: 14px;
+              margin-right: 8px;
+            }
+            &:hover {
+              cursor: pointer;
+              background: #1b1b1b;
+              // color: #fff;
+              // text-decoration: underline;
+            }
+            &.active::before {
+              // background: #404040;
+              position: absolute;
+              // left: 1rem;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              content: "";
+              width: 4px;
+              height: 80%;
+              background-color: #fff;
+              border-radius: 0.4rem;
+            }
+            &.active {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+  .sidenavbar-bottom {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #1b1b1b;
+    .sidenavbar-bottom__account {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 0.5rem;
+      .icon {
+        font-size: 14px;
+        margin-right: 8px;
+      }
+
+      .profile-icon {
+        background: #f8cbad;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .profile-title {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        margin-left: 10px;
+        .icon {
+          margin: 0 10px;
+          font-size: 12px;
+        }
+      }
+
+      &:hover {
+        background-color: #1b1b1b;
+      }
+    }
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  /* width: 36px;
+  height: 36px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+.avatar > * {
+  width: 100%;
+  border-radius: 50%;
+}
+.avatar--icon > * {
+  width: 80%;
+}
+.avatar--square {
+  border-radius: 0;
+}
+.avatar--square > * {
+  border-radius: 0;
+}
+.avatar--rounded {
+  border-radius: 0.5rem;
+}
+.avatar--rounded > * {
+  border-radius: 0.25rem;
+}
+
+.avatar--sm {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* width: 24px;
+  height: 24px; */
+}
+.avatar--md {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+.avatar--lg {
+  width: 3rem;
+  height: 3rem;
+}
+.avatar--xl {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.avatar--2xl {
+  width: 6.125rem;
+  height: 6.125rem;
+}
+
+.bg-red-500 {
+  background-color: #ef4444;
+}
+.text-white {
+  color: #fff;
+}
