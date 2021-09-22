@@ -1,4 +1,4 @@
-// export const BASE_URL = 'http://localhost:2000';
+// export const BASE_URL = "http://localhost:2000";
 export const BASE_URL = "https://thoughts-backend.herokuapp.com/";
 export const CREATE_NOTE = "/api/note";
 export const UPDATE_NOTE = "/api/note/";
